@@ -1,5 +1,4 @@
-const { fetchMyIP } = require('./iss');
-const { fetchCoordsByIP } = require('./iss');
+const { fetchMyIP } = require('./iss.js');
 
 fetchMyIP((error, ip) => {
   if (error) {
@@ -9,4 +8,13 @@ fetchMyIP((error, ip) => {
   console.log('It worked! Returned IP:' , ip);
 });
 
-console.log(fetchCoordsByIP("24.222.102.18"));
+const { fetchCoordsByIP } = require('./iss.js');
+
+fetchCoordsByIP((error, lang) => {
+  lang = "http://ipwho.is/?lang=en";
+  if (error) {
+    console.log("It didn't work!" , error.message);
+    return;
+  }
+  console.log('It worked! Returned lang:' , lang);
+});
