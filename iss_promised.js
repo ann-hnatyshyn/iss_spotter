@@ -1,15 +1,22 @@
 const needle = require('needle');
 
-const fetchMyIp = function(error, callback) {
+const fetchMyIp = function(callback) {
   return needle('get', 'https://api.ipify.org?format=json')
     .then((response) => {
       const body = response.body; // retrieve the body value from the response object
       const ip = body.ip; // retrieve the ip from the body object
       return ip;
-    })
-    .catch(function(error) {
-      return (error.message);
     });
 };
 
-module.exports = {fetchMyIp};
+const fetchCoordsByIP = function(ip) {
+  return needle('get', '`http://ipwho.is/${ip}`')
+    .then((response) => {
+      const latitude = response.latitude;
+      const longitude = response.longitude;
+      return latitude, longitude;
+    });
+};
+
+
+module.exports = { fetchMyIp, fetchCoordsByIP };
