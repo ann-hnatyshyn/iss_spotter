@@ -11,7 +11,9 @@
 
 const needle = require('needle');
 
+
 const fetchMyIP = function(callback) {
+  
   needle.get('https://api.ipify.org?format=json', function(error, response, body) {
     if (error) {
       callback(error, null);
@@ -21,8 +23,8 @@ const fetchMyIP = function(callback) {
       callback(Error(msg), null);
       return;
     }
-
-    const ip = body.ip;
+    const bodyObj = JSON.parse(body);
+    const ip = bodyObj.ip;
     callback(null, ip);
     // console.log(body.ip_addr);
   });
