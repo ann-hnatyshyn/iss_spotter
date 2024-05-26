@@ -20,8 +20,10 @@ const fetchMyIP = function(callback) {
         callback(Error(msg), null);
         return;
       }
-      console.log(typeof body); // Check the type of body
       console.log(body);
+      // const ip = JSON.parse(body).ip;
+      // callback(null, ip);
+
     }
   );
 };
@@ -106,5 +108,7 @@ const nextISSTimesForMyLocation = function(callback) {
 };
 
 
-// module.exports = { fetchMyIP, fetchCoordsByIP, fetchISSFlyOverTimes };
-module.exports = { nextISSTimesForMyLocation };
+module.exports = { fetchMyIP, fetchCoordsByIP, fetchISSFlyOverTimes, nextISSTimesForMyLocation };
+// module.exports = { fetchCoordsByIP };
+// module.exports = { fetchISSFlyOverTimes };
+// module.exports = { nextISSTimesForMyLocation };
