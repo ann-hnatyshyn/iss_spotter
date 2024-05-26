@@ -12,7 +12,7 @@
 const needle = require('needle');
 
 const fetchMyIP = function(callback) {
-  needle.get('ifconfig.me/all.json', function(error, response, body) {
+  needle.get('https://api.ipify.org?format=json', function(error, response, body) {
     if (error) {
       callback(error, null);
       return;
@@ -21,7 +21,10 @@ const fetchMyIP = function(callback) {
       callback(Error(msg), null);
       return;
     }
-    console.log(body.ip_addr);
+
+    const ip = body.ip;
+    callback(null, ip);
+    // console.log(body.ip_addr);
   });
 };
 
