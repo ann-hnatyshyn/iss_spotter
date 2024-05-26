@@ -10,11 +10,11 @@ fetchMyIP((error, ip) => {
 
 const { fetchCoordsByIP } = require('./iss.js');
 
-fetchCoordsByIP((error, lang) => {
-  lang = "http://ipwho.is/?lang=en";
+fetchCoordsByIP('24.222.102.18', (error, coordinates) => {
   if (error) {
-    console.log("It didn't work!" , error.message);
+    console.log("It didn't work!" , error);
     return;
   }
-  console.log('It worked! Returned lang:' , lang);
+
+  console.log('It worked! Returned coordinates:' , coordinates);
 });
