@@ -1,6 +1,6 @@
 const needle = require('needle');
 
-const fetchMyIp = function(callback) {
+const fetchMyIP = function(callback) {
   return needle('get', 'https://api.ipify.org?format=json')
     .then((response) => {
       const body = response.body; // retrieve the body value from the response object
@@ -19,5 +19,14 @@ const fetchCoordsByIP = function(ip) {
     });
 };
 
+const fetchISSFlyOverTimes = function() {
+  return needle('get', '` https://iss-flyover.herokuapp.com `')
+    .then((response) => {
+      const body = response.body;
+      const flyOverTimes = body.flyOverTimes;
+      return flyOverTimes;
+    });
+};
 
-module.exports = { fetchMyIp, fetchCoordsByIP };
+
+module.exports = { fetchMyIP, fetchCoordsByIP, fetchISSFlyOverTimes };
