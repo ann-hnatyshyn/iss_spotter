@@ -12,9 +12,10 @@ const fetchMyIp = function(callback) {
 const fetchCoordsByIP = function(ip) {
   return needle('get', '`http://ipwho.is/${ip}`')
     .then((response) => {
-      const latitude = response.latitude;
-      const longitude = response.longitude;
-      return latitude, longitude;
+      const body = response.body;
+      const latitude = body.latitude;
+      const longitude = body.longitude;
+      return {latitude, longitude};
     });
 };
 
